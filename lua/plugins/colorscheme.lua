@@ -73,6 +73,13 @@ local gruvbox_material =
 		vim.g.gruvbox_material_enable_bold = 1
 		vim.g.gruvbox_material_enable_italic = 1
 		vim.g.gruvbox_material_diagnostic_virtual_text="grey"
+		
+		vim.api.nvim_create_autocmd("LspAttach", {
+		  callback = function(args)
+			local client = vim.lsp.get_client_by_id(args.data.client_id)
+			client.server_capabilities.semanticTokensProvider = nil
+		  end,
+		});
         vim.cmd.colorscheme('gruvbox-material')
 		
       end
@@ -139,5 +146,15 @@ local gruvbox_baby =
 
 
 
+
+local material = 
+{
+	'marko-cerovac/material.nvim',
+	priority = 1000, 
+	lazy = false , 
+	config = function()
+		vim.cmd.colorscheme("material")
+	end
+}
 
 return gruvbox_material

@@ -21,3 +21,33 @@ return {
         springboot_nvim.setup({})
     end
 }
+
+
+
+--[[
+
+To fix the fact that the plugin cannot handle spaces in filename , change 
+\home\samuel\.local\share\nvim\lazy\springboot-nvim\lua\springboot-nvim/utils.lua ( function find_main_application_class_directory )
+
+Basically , we're englobing the whole path into a string so that the find command doesnt break
+
+local function find_main_application_class_directory(root_path)
+    local main_class_pattern = '@SpringBootApplication'
+    local java_file_pattern = '*.java'
+
+    -- Quote the root_path to handle spaces
+    local quoted_root = '"' .. root_path .. '"'
+
+    local search_cmd = 'find ' .. quoted_root .. ' -type f -name "' .. java_file_pattern .. '" -exec grep -l "' .. main_class_pattern .. '" {} +'
+    local result = vim.fn.systemlist(search_cmd)
+
+    if not vim.tbl_isempty(result) then
+        local first_file_path = result[1] -- Assuming there's only one main application class
+        local directory = vim.fn.fnamemodify(first_file_path, ':h')
+        return directory
+    else
+        print('Main application class not found in the project directory.')
+    end
+end
+
+]]--
