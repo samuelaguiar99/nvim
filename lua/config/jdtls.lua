@@ -1,12 +1,15 @@
 --https://www.youtube.com/watch?v=zbpF3te0M3g
 
-local function get_jdtls()
+local mason_packages_path = vim.fn.expand("$MASON/packages")
+
+
+function get_jdtls()
     -- Get the Mason Registry to gain access to downloaded binaries
     local mason_registry = require("mason-registry")
     -- Find the JDTLS package in the Mason Regsitry
-    local jdtls = mason_registry.get_package("jdtls")
+	local jdtls = mason_registry.get_package("jdtls")
     -- Find the full path to the directory where Mason has downloaded the JDTLS binaries
-    local jdtls_path = jdtls:get_install_path()
+	local jdtls_path = mason_packages_path .. "/jdtls"
     -- Obtain the path to the jar which runs the language server
     local launcher = vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar")
      -- Declare white operating system we are using, windows use win, macos use mac
@@ -24,7 +27,7 @@ local function get_bundles()
     -- Find the Java Debug Adapter package in the Mason Registry
     local java_debug = mason_registry.get_package("java-debug-adapter")
     -- Obtain the full path to the directory where Mason has downloaded the Java Debug Adapter binaries
-    local java_debug_path = java_debug:get_install_path()
+	local java_debug_path = mason_packages_path .. "/java-debug-adapter"
 
     local bundles = {
         vim.fn.glob(java_debug_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar", 1)
@@ -33,7 +36,7 @@ local function get_bundles()
     -- Find the Java Test package in the Mason Registry
     local java_test = mason_registry.get_package("java-test")
     -- Obtain the full path to the directory where Mason has downloaded the Java Test binaries
-    local java_test_path = java_test:get_install_path()
+	local java_test_path = mason_packages_path .. "/java-test"
      -- Add all of the Jars for running tests in debug mode to the bundles list
      vim.list_extend(bundles, vim.split(vim.fn.glob(java_test_path .. "/extension/server/*.jar", 1), "\n"))
 
@@ -93,11 +96,11 @@ local function setup_jdtls()
     local workspace_dir = get_workspace()
 
     -- Get the bundles list with the jars to the debug adapter, and testing adapters
-    local bundles = get_bundles()
-
+    --local bundles = get_bundles()
+	local bundles = get_bundles()
 		
     local root_dir = jdtls.setup.find_root({ '.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle' });
-    
+	
     -- Tell our JDTLS language features it is capable of
     local capabilities = {
         workspace = {
