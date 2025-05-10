@@ -46,10 +46,20 @@ return {
         config = function()
             -- ensure the java debug adapter is installed
             require("mason-nvim-dap").setup({
-                ensure_installed = { "java-debug-adapter", "java-test" }
+                ensure_installed = { "java-debug-adapter", "java-test" } , 
             })
         end
     },
+	-- use mason tool installer to install java-debug-adapter & java-test as these are not DAPS, but JDTLS dependencies
+	{
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		opts = {
+			ensure_installed = {
+			  "java-debug-adapter",
+			  "java-test",
+			},
+		},
+	},
     -- utility plugin for configuring the java language server for us
     {
         "mfussenegger/nvim-jdtls",
@@ -75,10 +85,6 @@ return {
                 capabilities = capabilities,
             })
 			
-			vim.inspect( print (lspconfig) ) 
-			
-			
-
 
             -- Set vim motion for <Space> + c + h to show code documentation about the code the cursor is currently over if available
             vim.keymap.set("n", "<leader>ch", vim.lsp.buf.hover, { desc = "[C]ode [H]over Documentation" })

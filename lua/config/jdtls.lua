@@ -86,7 +86,6 @@ local function setup_jdtls()
     local workspace_dir = get_workspace()
 
     -- Get the bundles list with the jars to the debug adapter, and testing adapters
-    --local bundles = get_bundles()
 	local bundles = get_bundles()
 		
     local root_dir = jdtls.setup.find_root({ '.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle' });
