@@ -14,7 +14,15 @@ return {
     {
         "williamboman/mason.nvim",
         config = function()
-            require("mason").setup()
+            require("mason").setup({
+				ui = {
+					icons = {
+						package_installed = "✓",
+						package_pending = "➜",
+						package_uninstalled = "✗"
+					}
+				},
+			})
         end
     },
     -- mason lsp config utilizes mason to automatically ensure lsp servers you want installed are installed
