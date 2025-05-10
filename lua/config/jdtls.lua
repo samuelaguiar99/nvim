@@ -91,23 +91,18 @@ local function setup_jdtls()
     local root_dir = jdtls.setup.find_root({ '.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle' });
 	
     -- Tell our JDTLS language features it is capable of
-    local capabilities = {
-        workspace = {
-            configuration = true
-        },
-        textDocument = {
-            completion = {
-                snippetSupport = false
-            }
-        }
-    }
-
     local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+	lsp_capabilities.textDocument = lsp_capabilities.textDocument or {}
+	lsp_capabilities.textDocument.completion = lsp_capabilities.textDocument.completion or {}
+	lsp_capabilities.textDocument.completion.snippetSupport = true
 
-    for k,v in pairs(lsp_capabilities) do capabilities[k] = v end
+	lsp_capabilities.workspace = lsp_capabilities.workspace or {}
+	lsp_capabilities.workspace.configuration = true
+
 
     -- Get the default extended client capablities of the JDTLS language server
     local extendedClientCapabilities = jdtls.extendedClientCapabilities
+
     -- Modify one property called resolveAdditionalTextEditsSupport and set it to true
     extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
@@ -269,7 +264,7 @@ local function setup_jdtls()
         cmd = cmd,
         root_dir = root_dir,
         settings = settings,
-        capabilities = capabilities,
+        capabilities = lsp_capabilities,
         init_options = init_options,
         on_attach = on_attach
     }
