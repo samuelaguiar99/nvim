@@ -1,9 +1,3 @@
---Open Mason and install 
-	--google-java-format
-	--java-debug-adapter
-	--java-test
-
-
 return {
 
     -- add the lsp needed to use mason
@@ -57,6 +51,7 @@ return {
 			ensure_installed = {
 			  "java-debug-adapter",
 			  "java-test",
+			  "google-java-format",
 			},
 		},
 	},

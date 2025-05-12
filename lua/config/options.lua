@@ -37,3 +37,8 @@ vim.opt.updatetime=50
 vim.opt.ignorecase = true --ignore case in search
 vim.opt.smartcase = true --match case if explicitly stated
 
+--Others
+vim.opt.pumheight = 10 -- Set max number of completion suggestions to 6
+
+
+

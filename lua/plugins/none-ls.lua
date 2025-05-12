@@ -11,7 +11,7 @@ return {
 			debug = true,
             sources = {
                 null_ls.builtins.formatting.stylua,
-				null_ls.builtins.completion.spell,
+				--null_ls.builtins.completion.spell,
 				require("none-ls.diagnostics.eslint_d"),
             }
         })

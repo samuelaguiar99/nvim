@@ -92,9 +92,7 @@ local function setup_jdtls()
 	
     -- Tell our JDTLS language features it is capable of
     local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
-	lsp_capabilities.textDocument = lsp_capabilities.textDocument or {}
-	lsp_capabilities.textDocument.completion = lsp_capabilities.textDocument.completion or {}
-	lsp_capabilities.textDocument.completion.snippetSupport = true
+	lsp_capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 	lsp_capabilities.workspace = lsp_capabilities.workspace or {}
 	lsp_capabilities.workspace.configuration = true
@@ -135,8 +133,8 @@ local function setup_jdtls()
                 enabled = true,
                 -- Use the Google Style guide for code formattingh
                 settings = {
-                    url = vim.fn.stdpath("config") .. "/lang_servers/intellij-java-google-style.xml",
-                    profile = "GoogleStyle"
+                    --url = vim.fn.stdpath("config") .. "/lang_servers/intellij-java-google-style.xml",
+                    --profile = "GoogleStyle"
                 }
             },
             -- Enable downloading archives from eclipse automatically
