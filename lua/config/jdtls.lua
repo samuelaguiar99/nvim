@@ -93,6 +93,7 @@ local function setup_jdtls()
     -- Tell our JDTLS language features it is capable of
     local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 	lsp_capabilities.textDocument.completion.completionItem.snippetSupport = true
+	
 
 	lsp_capabilities.workspace = lsp_capabilities.workspace or {}
 	lsp_capabilities.workspace.configuration = true
@@ -230,7 +231,12 @@ local function setup_jdtls()
     }
 
     -- Function that will be ran once the language server is attached
-    local on_attach = function(_, bufnr)
+    local on_attach = function(client, bufnr)
+		--Disable semantic tokens because they're annoying
+		if client.server_capabilities.semanticTokensProvider then
+			client.server_capabilities.semanticTokensProvider = nil
+		end
+	
         -- Map the Java specific key mappings once the server is attached
         java_keymaps()
 
