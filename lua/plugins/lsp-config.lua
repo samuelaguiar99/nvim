@@ -150,6 +150,13 @@ return {
             vim.keymap.set("n", "<leader>cD", vim.lsp.buf.declaration, { desc = "[C]ode Goto [D]eclaration" })
 			--Show diagnostic in hover window
 			vim.keymap.set("n", "<leader>sd", vim.diagnostic.open_float, { desc = "[S]how [D]iagnostic" })
+
+
+            vim.diagnostic.config({
+                virtual_text = true , 
+                underline = true , 
+                update_in_insert = false ,
+            })
         end
     }
 }
