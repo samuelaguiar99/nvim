@@ -10,6 +10,13 @@ return
             -- setup the lua language server
             lspconfig.lua_ls.setup({
                 capabilities = capabilities,
+				settings = {
+					Lua = {
+						diagnostics = {
+							globals = { "vim" },
+						},
+					},
+				},
             })
 
             -- setup the typescript language server
@@ -18,18 +25,18 @@ return
             })
 
             lspconfig.html.setup({
-                capabilities = capabilities , 
+                capabilities = capabilities ,
                 filetypes = {"html"},
                 init_options = {
                     configurationSection = {"html" , "javascript" , "typescript"},
                     embeddedLanguages = {
-                        css = true , 
+                        css = true ,
                         javascript = true
                     },
                     provideFormatter = true,
                 },
             })
-			
+
             lspconfig.emmet_language_server.setup({
                 capabilities = capabilities,
 				filetypes = {
@@ -87,8 +94,8 @@ return
 
 
             vim.diagnostic.config({
-                virtual_text = true , 
-                underline = true , 
+                virtual_text = true ,
+                underline = true ,
                 update_in_insert = false ,
             })
         end

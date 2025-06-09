@@ -1,5 +1,5 @@
 
-local gruvbox_material = 
+local gruvbox_material =
 {
       'sainnhe/gruvbox-material',
 	  name="gruvbox",
@@ -12,7 +12,7 @@ local gruvbox_material =
 		vim.g.gruvbox_material_enable_bold = 1
 		vim.g.gruvbox_material_enable_italic = 1
 		vim.g.gruvbox_material_diagnostic_virtual_text="grey"
-		
+
 		vim.api.nvim_create_autocmd("LspAttach", {
 		  callback = function(args)
 			local client = vim.lsp.get_client_by_id(args.data.client_id)
@@ -20,7 +20,7 @@ local gruvbox_material =
 		  end,
 		});
         vim.cmd.colorscheme('gruvbox-material')
-		
+
       end
 }
 
@@ -29,7 +29,7 @@ local onedarkpro = {
     priority = 1000,
     lazy = false ,
     config = function ()
-	
+
 		require("onedarkpro").setup({
 			options = {
 				cursorline = true,
@@ -37,9 +37,9 @@ local onedarkpro = {
 				lualine_transparency = true,
 			},
 		})
-		
-		
+
+
         vim.cmd.colorscheme("onedark")
     end
 }
-return onedarkpro; 
+return onedarkpro;
