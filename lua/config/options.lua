@@ -39,3 +39,5 @@ vim.opt.smartcase = true --match case if explicitly stated
 
 --Others
 vim.opt.pumheight = 10 -- Set max number of completion suggestions to 6
+
+vim.g.editorconfig = false -- disable editor config so ftplugin works

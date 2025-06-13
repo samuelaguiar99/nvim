@@ -27,7 +27,7 @@ return {
                 ensure_installed = { "lua_ls", "ts_ls", "jdtls" , "html" },
 				automatic_enable = {
 					exclude = {
-						"jdtls", "html" , "ts_ls" , "emmet_language_server",
+						"jdtls", "html" , "ts_ls" , "emmet_language_server","lua_ls" ,
 					}
 				},
             })

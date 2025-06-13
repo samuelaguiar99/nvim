@@ -1,5 +1,6 @@
 return {
     "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPre" , "BufNewFile" } ,
     dependencies = {
         -- ts-autotag utilizes treesitter to understand the code structure to automatically close tsx tags
         "windwp/nvim-ts-autotag"
