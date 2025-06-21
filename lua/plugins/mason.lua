@@ -40,7 +40,7 @@ return {
 			  "java-debug-adapter",
 			  "java-test",
 			  "google-java-format",
-              "eslint_d",
+              { "eslint_d", version = '13.1.2'},
               "prettier",
               "stylua" ,
 			},
