@@ -39,25 +39,7 @@ local onedarkpro = {
 		})
 
 
-        vim.cmd.colorscheme("onedark")
+        vim.cmd.colorscheme("onedark_vivid")
     end
 }
-
-
-local onedark = {
-    "navarasu/onedark.nvim",
-    priority = 1000 ,
-    config = function()
-        require("onedark").setup({
-            style = "dark" ,
-            transparent = true ,
-            require("onedark").load()
-        })
-    end
-
-
-}
-
-
-
 return onedarkpro;

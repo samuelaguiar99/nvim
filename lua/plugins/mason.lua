@@ -24,10 +24,10 @@ return {
         config = function()
             -- ensure that we have lua language server, typescript launguage server, java language server, and java test language server are installed
             require("mason-lspconfig").setup({
-                ensure_installed = { "lua_ls", "ts_ls", "jdtls" , "html" },
+                ensure_installed = { "lua_ls", "ts_ls", "jdtls" , "html" , "emmet_language_server" , "tailwindcss" },
 				automatic_enable = {
 					exclude = {
-						"jdtls", "html" , "ts_ls" , "emmet_language_server","lua_ls" ,
+						"jdtls", "html" , "ts_ls" , "emmet_language_server","lua_ls" , "tailwindcss"
 					}
 				},
             })
@@ -52,7 +52,7 @@ return {
         config = function()
             -- ensure the java debug adapter is installed
             require("mason-nvim-dap").setup({
-                ensure_installed = { "java-debug-adapter", "java-test" } , 
+                ensure_installed = { "java-debug-adapter", "java-test" } ,
             })
         end
     },
