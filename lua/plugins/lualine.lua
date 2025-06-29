@@ -58,7 +58,12 @@ return {
         local filename = {
             'filename',
             file_status = true,
-            path = 0,
+            path = 0 ,
+            symbols = {
+                modified = ' ●',
+                readonly = ' ',
+                unnamed = '[No Name]',
+            },
         }
 
         local branch = {'branch', icon = {'', color={fg='#A6D4DE'}}, '|'}

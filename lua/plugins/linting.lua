@@ -50,7 +50,6 @@ return {
                 end
                 local original_cwd = vim.fn.getcwd()
                 local node_modules_dir = find_nearest_node_modules_dir()
-                print(node_modules_dir)
                 if node_modules_dir then
                     vim.cmd("cd " .. node_modules_dir)
                 end

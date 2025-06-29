@@ -39,7 +39,7 @@ local onedarkpro = {
 		})
 
 
-        vim.cmd.colorscheme("onedark_vivid")
+        vim.cmd.colorscheme("onedark")
     end
 }
 return onedarkpro;
