@@ -33,4 +33,5 @@ vim.keymap.set("n" , "N" , "Nzzzv")
 vim.keymap.set("n" , "<TAB>" , "w"  )
 vim.keymap.set("n" , "<S-TAB>" , "W")
 
-
+--Clear selections when pressing Enter after / command
+vim.keymap.set( 'c' , "<CR>" , function () return vim.fn.getcmdtype() == "/" and "<CR>:noh<CR>" or "<CR>" end , { expr = true  , noremap = true })
