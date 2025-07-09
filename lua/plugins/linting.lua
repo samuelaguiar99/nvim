@@ -27,6 +27,15 @@ return {
 			end,
 		}
 
+        local eslint_config_files = {
+          ".eslintrc",
+          ".eslintrc.js",
+          ".eslintrc.cjs",
+          ".eslintrc.json",
+          "eslint.config.js",
+          "eslint.config.cjs",
+        }
+
 		local function find_nearest_node_modules_dir()
             -- current buffer dir
             local current_dir = vim.fn.expand('%:p:h')
@@ -37,6 +46,15 @@ return {
                 current_dir = vim.fn.fnamemodify(current_dir, ":h")
             end
             return nil
+        end
+
+        local function has_eslint_config(dir)
+            for _, config in ipairs(eslint_config_files) do
+                if vim.loop.fs_stat(dir .. "/" .. config) then
+                  return true
+                end
+              end
+              return false
         end
 
         vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
@@ -50,10 +68,11 @@ return {
                 end
                 local original_cwd = vim.fn.getcwd()
                 local node_modules_dir = find_nearest_node_modules_dir()
-                if node_modules_dir then
+                local hasConfigFile = has_eslint_config(node_modules_dir)
+                if node_modules_dir and hasConfigFile then
                     vim.cmd("cd " .. node_modules_dir)
+                    lint.try_lint()
                 end
-                lint.try_lint()
                 vim.cmd("cd " .. original_cwd)
             end,
         })

@@ -10,12 +10,12 @@ return {
 		hijack_netrw = true ,
 		auto_reload_on_write = true,
 		renderer = {
-			group_empty = true
+			group_empty = true,
 		},
 		view = {
 			width = 40,
 		},
-		
+
 	}
   end,
 }
