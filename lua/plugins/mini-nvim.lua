@@ -1,18 +1,18 @@
 return
 {
     {
-		'echasnovski/mini.nvim',
-		version = false ,
-		config = function()
-			-- require("mini.pairs").setup({})
-			require("mini.animate").setup({
-				open = { enable = false },
-				close = { enable = false },
-			})
-			require("mini.sessions").setup({})
-		end
-	},
-	{
+        'echasnovski/mini.nvim',
+        version = false,
+        config = function()
+            -- require("mini.pairs").setup({})
+            require("mini.animate").setup({
+                open = { enable = false },
+                close = { enable = false },
+            })
+            require("mini.sessions").setup({})
+        end
+    },
+    {
         "echasnovski/mini.surround",
         event = { "BufReadPre", "BufNewFile" },
         opts = {
@@ -58,7 +58,7 @@ return
             silent = false,
         },
     },
-	{
+    {
         "echasnovski/mini.trailspace",
         event = { "BufReadPost", "BufNewFile" },
         config = function()
@@ -78,7 +78,7 @@ return
             })
         end,
     },
-	{
+    {
         "echasnovski/mini.splitjoin",
         config = function()
             local miniSplitJoin = require("mini.splitjoin")
@@ -89,5 +89,18 @@ return
             vim.keymap.set({ "n", "x" }, "<leader>ss", function() miniSplitJoin.split() end, { desc = "Split arguments" })
         end,
     },
+    {
+        "echasnovski/mini.icons",
+        opts = {},
+        lazy = true,
+        specs = {
+            { "nvim-tree/nvim-web-devicons", enabled = false, optional = true },
+        },
+        init = function()
+            package.preload["nvim-web-devicons"] = function()
+                require("mini.icons").mock_nvim_web_devicons()
+                return package.loaded["nvim-web-devicons"]
+            end
+        end,
+    },
 }
-
