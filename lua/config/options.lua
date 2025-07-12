@@ -6,6 +6,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.wrap = false --display lines in single line
 vim.opt.scrolloff = 10  --number of lines to keep above / below cursor
 vim.opt.sidescrolloff = 8 --number of columns to keeps to the left /right of cursor
+vim.opt.sidescroll = 1
 vim.opt.cursorline=true
 
 
