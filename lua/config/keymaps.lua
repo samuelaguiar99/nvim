@@ -18,13 +18,6 @@ vim.keymap.set("n" , "<leader>wh"  , ":split<cr>"  , {desc = "[W]indow Split [H]
 vim.keymap.set("v" , "<" , "<gv" , { desc = "Indent left in visual mode " } )
 vim.keymap.set("v" , ">" , ">gv" , { desc = "Indent right in visual mode" } )
 
-
---Move code in visual mode up and down
-vim.keymap.set("v" , "<C-j>" , ":m '>+1<CR>gv=gv" , { desc = "Move code in visual mode" } )
-vim.keymap.set("v" , "<C-k>", ":m '<-2<CR>gv=gv" , { desc = "Move code in visual mode" } )
-
-
-
 --Keep search terms in the middle of the screen while going to next and previous
 vim.keymap.set("n" , "n" , "nzzzv")
 vim.keymap.set("n" , "N" , "Nzzzv")
@@ -36,7 +29,3 @@ vim.keymap.set("n" , "<S-TAB>" , "W")
 --Clear selections when pressing Enter after / command
 vim.keymap.set( 'c' , "<CR>" , function () return vim.fn.getcmdtype() == "/" and "<CR>:noh<CR>" or "<CR>" end , { expr = true  , noremap = true })
 
---Change J & K behaviour because its annoying when using capslock and trying to move
-vim.keymap.set("n", "J", "<Nop>", { noremap = true })
-vim.keymap.set("n", "<C-j>", "J", { noremap = true })
-vim.keymap.set("n", "K", "<Nop>", { noremap = true })

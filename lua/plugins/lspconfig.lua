@@ -24,6 +24,12 @@ return
             -- setup the typescript language server
             lspconfig.ts_ls.setup({
                 capabilities = capabilities,
+                init_options = {
+                    preferences = {
+                        includeCompletionsWithSnippetText = true,
+                        includeCompletionsForImportStatements = true,
+                    }
+                }
             })
 
             lspconfig.html.setup({
