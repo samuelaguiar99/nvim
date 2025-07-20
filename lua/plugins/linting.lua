@@ -1,42 +1,43 @@
 return {
-	"mfussenegger/nvim-lint",
-	event = { "BufReadPre", "BufNewFile" },
-	config = function()
-		local lint = require("lint")
-		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
-		local eslint = lint.linters.eslint_d
+    "mfussenegger/nvim-lint",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+        local lint = require("lint")
+        local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
+        local eslint = lint.linters.eslint_d
 
-		-- if Eslint error configuration not found : change MasonInstall eslint@version or npm i -g eslint at a specific version
-		lint.linters_by_ft = {
-			javascript = {"eslint_d"},
-			typescript = {"eslint_d"},
-			javascriptreact = {"eslint_d"},
-			typescriptreact = {"eslint_d"},
-			svelte = { "eslint_d" },
-			python = { "pylint" },
-		}
-
-		eslint.args = {
-			"--no-warn-ignored",
-			"--format",
-			"json",
-			"--stdin",
-			"--stdin-filename",
-			function()
-                return vim.fn.expand("%:p")
-			end,
-		}
-
-        local eslint_config_files = {
-          ".eslintrc",
-          ".eslintrc.js",
-          ".eslintrc.cjs",
-          ".eslintrc.json",
-          "eslint.config.js",
-          "eslint.config.cjs",
+        -- if Eslint error configuration not found : change MasonInstall eslint@version or npm i -g eslint at a specific version
+        lint.linters_by_ft = {
+            javascript = { "eslint_d" },
+            typescript = { "eslint_d" },
+            javascriptreact = { "eslint_d" },
+            typescriptreact = { "eslint_d" },
+            svelte = { "eslint_d" },
+            python = { "pylint" },
         }
 
-		local function find_nearest_node_modules_dir()
+        eslint.args = {
+            "--no-warn-ignored",
+            "--format",
+            "json",
+            "--stdin",
+            "--stdin-filename",
+            function()
+                return vim.fn.expand("%:p")
+            end,
+        }
+
+        local eslint_config_files = {
+            ".eslintrc",
+            ".eslintrc.js",
+            ".eslintrc.cjs",
+            ".eslintrc.json",
+            "eslint.config.js",
+            "eslint.config.cjs",
+            "eslint.config.mjs",
+        }
+
+        local function find_nearest_node_modules_dir()
             -- current buffer dir
             local current_dir = vim.fn.expand('%:p:h')
             while current_dir ~= "/" do
@@ -51,10 +52,10 @@ return {
         local function has_eslint_config(dir)
             for _, config in ipairs(eslint_config_files) do
                 if vim.loop.fs_stat(dir .. "/" .. config) then
-                  return true
+                    return true
                 end
-              end
-              return false
+            end
+            return false
         end
 
         vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
@@ -77,8 +78,8 @@ return {
             end,
         })
 
-		vim.keymap.set("n", "<leader>l", function()
-			lint.try_lint()
-		end, { desc = "[L]int current buffer" })
-	end,
+        vim.keymap.set("n", "<leader>lb", function()
+            lint.try_lint()
+        end, { desc = "[L]int current buffer" })
+    end,
 }

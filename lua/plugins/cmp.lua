@@ -230,10 +230,10 @@ return {
 				},
 				-- autocompletion sources
 				sources = cmp.config.sources({
+                    { name = "buffer" }, -- text within current buffer
+                    { name = "nvim_lsp" },
 					{ name = "luasnip" }, -- snippets
 					{ name = "lazydev" },
-					{ name = "nvim_lsp"},
-					{ name = "buffer" }, -- text within current buffer
 					{ name = "path" }, -- file system paths
 					{ name = "tailwindcss-colorizer-cmp" },
 				}),

@@ -18,6 +18,7 @@ return
             '<leader>J',
             '<leader>w',
 			'<leader>u',
+            '<leader>l',
       function()
         require("which-key").show({ global = false })
       end,

@@ -1,3 +1,4 @@
+
 return {
     {
 		"folke/noice.nvim",
@@ -49,7 +50,12 @@ return {
                             row = -2,
                             col = "100%",
                         },
-                    }
+                    },
+					hover = {
+						border = {
+							style ="rounded",
+						}
+					},
                 },
 				lsp = {
 					progress = {
@@ -64,6 +70,9 @@ return {
                     signature = {
                         auto_open = { enabled = false }, -- disable auto signature help on insert mode
                     },
+					hover = {
+						enabled = true ,
+					},
 				},
                 routes = {
                     {
@@ -86,6 +95,13 @@ return {
 						find = "jdtls",
 					  },
 					  opts = { skip = true },
+					},
+					{
+						filter = {
+						  event = "lsp",
+						  kind = "hover",
+						},
+						view = "hover",
 					},
                 },
 				messages = {

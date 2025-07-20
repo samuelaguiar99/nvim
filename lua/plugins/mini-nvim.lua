@@ -107,7 +107,15 @@ return
         "echasnovski/mini.move",
         opts = {},
         config = function()
-            require("mini.move").setup({})
+            require("mini.move").setup({
+                --Disable moves in normal mode
+                mappings = {
+                    line_left = '',
+                    line_right = '',
+                    line_down = '',
+                    line_up = '',
+                }
+            })
         end
     }
 }
