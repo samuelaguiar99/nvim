@@ -2,7 +2,7 @@ return
 {
         "neovim/nvim-lspconfig",
         config = function()
-		
+
 			vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("UserLspConfig", {}),
             callback = function(ev)
@@ -109,12 +109,12 @@ return
             lspconfig.tailwindcss.setup({
                 capabilities = capabilities,
             })
-			
-		
+
+
 
             -- Set custom diagnostic icons
             local signs = {
-              [vim.diagnostic.severity.ERROR] = " ", 
+              [vim.diagnostic.severity.ERROR] = " ",
               [vim.diagnostic.severity.WARN]  = " ",
               [vim.diagnostic.severity.HINT] =  " ",
               [vim.diagnostic.severity.INFO] = " ",
@@ -133,7 +133,7 @@ return
                     }
                 },
                 update_in_insert = false ,
-                severity_sort = true , 
+                severity_sort = true ,
             })
             vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { fg = "#555555" })
 
