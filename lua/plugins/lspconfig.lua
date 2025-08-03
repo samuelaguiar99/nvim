@@ -135,7 +135,7 @@ return
                 update_in_insert = false ,
                 severity_sort = true ,
             })
-            vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { fg = "#555555" })
+            vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { fg = "#999da3" })
 
 
         end
