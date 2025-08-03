@@ -230,7 +230,7 @@ return {
 				},
 				-- autocompletion sources
 				sources = cmp.config.sources({
-                    { name = "buffer" }, -- text within current buffer
+                    -- { name = "buffer" }, -- text within current buffer
                     { name = "nvim_lsp" },
 					{ name = "luasnip" }, -- snippets
 					{ name = "lazydev" },
@@ -266,6 +266,7 @@ return {
 					['<C-p>'] = cmp.mapping(select_prev_item),
 					['<Down>'] = cmp.mapping(select_next_item),
 					['<Up>'] = cmp.mapping(select_prev_item),
+				    ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
 
 					['<C-y>'] = cmp.mapping(function(fallback)
 						if cmp.visible() then
