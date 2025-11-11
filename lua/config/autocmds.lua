@@ -11,6 +11,15 @@ vim.cmd [[
     augroup end
 ]]
 
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "java",
+    callback = function()
+        local ok, jdtls = pcall(require, "config.jdtls")
+        if not ok then return end
+        jdtls.setup_jdtls()  -- this will start or attach safely
+    end,
+})
+
 
 --Disable readonly file message when saving automatically
 vim.api.nvim_create_autocmd("FileChangedRO", {
