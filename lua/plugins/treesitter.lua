@@ -9,7 +9,7 @@ return {
     build = ':TSUpdate',
     config = function()
         -- gain access to the treesitter config functions
-        local ts_config = require("nvim-treesitter.configs")
+        local ts_config = require("nvim-treesitter.config")
 
         -- call the treesitter setup function with properties to configure our experience
         ts_config.setup({
